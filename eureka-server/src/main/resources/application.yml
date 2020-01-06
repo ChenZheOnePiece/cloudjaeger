@@ -1,0 +1,12 @@
+server:
+  port: 9401
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    hostname: localhost
+
+spring:
+  application:
+    name: eureka-server
