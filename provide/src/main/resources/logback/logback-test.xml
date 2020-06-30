@@ -6,7 +6,7 @@
         -->
 <configuration scan="false" scanPeriod="60 seconds" debug="false">
 <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-​<property resource="application.yml" />
+​<property resource="bootstrap.yml" />
 <springProperty scope="context" name="springAppName" source="spring.application.name"/>
 <!-- 彩色日志 -->
 <!-- 彩色日志依赖的渲染类 -->
@@ -29,11 +29,11 @@
 <property name="log.level" value="INFO" />
 
 <!-- 定义日志文件名称，注意修改此处！！！ -->
-<property name="log.name" value="shop" />
+<property name="log.name" value="tdf-service-sys" />
 
 <!-- 定义日志文件的存储地址 -->
 <!-- <property name="log.path" value="/app/wo_sale/servers/logs/${log.name}" /> -->
-<property name="log.path" value="logs/${log.name}" />
+<property name="log.path" value="/opt/logs/tdf-cloud/${log.name}" />
 
 <!-- 定义日志文件名格式化 -->
 <property name="log.timeFormat" value="yyyy-MM-dd" />
@@ -71,13 +71,14 @@
         </TimeBasedFileNamingAndTriggeringPolicy>
     </rollingPolicy>
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-        <pattern>${log.pattern}</pattern>
+        <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        <charset>utf8</charset>
     </encoder>
 </appender>
 
 <!-- 按照每天生成日志文件。仅记录错误日志 -->
 <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${log.path}/error/${log.name}_error.log</file>
+    <file>${log.path}/${log.name}_error.log</file>
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
         <level>ERROR</level>
     </filter>
@@ -89,7 +90,8 @@
         </TimeBasedFileNamingAndTriggeringPolicy>
     </rollingPolicy>
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-        <pattern>${log.pattern}</pattern>
+        <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        <charset>utf8</charset>
     </encoder>
 </appender>
 
